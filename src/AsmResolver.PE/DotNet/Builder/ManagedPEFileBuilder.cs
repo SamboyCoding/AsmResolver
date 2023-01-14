@@ -19,6 +19,12 @@ using AsmResolver.PE.Relocations;
 using AsmResolver.PE.Relocations.Builder;
 using AsmResolver.PE.Win32Resources.Builder;
 
+#if NET35
+using IReadOnlyListBaseReloc = System.Collections.Generic.IList<AsmResolver.PE.Relocations.BaseRelocation>;
+#else
+using IReadOnlyListBaseReloc = System.Collections.Generic.IReadOnlyList<AsmResolver.PE.Relocations.BaseRelocation>;
+#endif
+
 namespace AsmResolver.PE.DotNet.Builder
 {
     /// <summary>
@@ -375,7 +381,7 @@ namespace AsmResolver.PE.DotNet.Builder
         /// <param name="context">The working space of the builder.</param>
         /// <param name="relocations">The working space of the builder.</param>
         /// <returns>The base relocations section.</returns>
-        protected virtual PESection CreateRelocSection(ManagedPEBuilderContext context, IReadOnlyList<BaseRelocation> relocations)
+        protected virtual PESection CreateRelocSection(ManagedPEBuilderContext context, IReadOnlyListBaseReloc relocations)
         {
             for (int i = 0; i < relocations.Count; i++)
                 context.RelocationsDirectory.Add(relocations[i]);

@@ -1,4 +1,9 @@
-using System.Collections.Generic;
+#if NET35
+using IReadOnlyListBaseReloc = System.Collections.Generic.IList<AsmResolver.PE.Relocations.BaseRelocation>;
+#else
+using IReadOnlyListBaseReloc = System.Collections.Generic.IReadOnlyList<AsmResolver.PE.Relocations.BaseRelocation>;
+#endif
+
 
 namespace AsmResolver.PE.Relocations
 {
@@ -12,7 +17,7 @@ namespace AsmResolver.PE.Relocations
         /// </summary>
         /// <param name="segment">The segment.</param>
         /// <param name="relocations">The relocation information.</param>
-        public RelocatableSegment(ISegment segment, IReadOnlyList<BaseRelocation> relocations)
+        public RelocatableSegment(ISegment segment, IReadOnlyListBaseReloc relocations)
         {
             Segment = segment;
             Relocations = relocations;
@@ -29,7 +34,7 @@ namespace AsmResolver.PE.Relocations
         /// <summary>
         /// Gets the relocation information required to relocate the segment.
         /// </summary>
-        public IReadOnlyList<BaseRelocation> Relocations
+        public IReadOnlyListBaseReloc Relocations
         {
             get;
         }

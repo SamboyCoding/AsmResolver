@@ -5,6 +5,10 @@ using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
 using AsmResolver.PE.File;
 using AsmResolver.PE.File.Headers;
 
+#if NET35
+using AsmResolver.PE.BackCompat;
+#endif
+
 namespace AsmResolver.PE.DotNet.StrongName
 {
     /// <summary>

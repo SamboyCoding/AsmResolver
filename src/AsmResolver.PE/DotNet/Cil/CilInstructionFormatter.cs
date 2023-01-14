@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using AsmResolver.PE.BackCompat;
 using AsmResolver.PE.DotNet.Metadata.Tables;
 
 namespace AsmResolver.PE.DotNet.Cil
@@ -147,8 +148,8 @@ namespace AsmResolver.PE.DotNet.Cil
         /// <returns>The formatted string.</returns>
         protected virtual string FormatSwitch(object? operand) => operand switch
         {
-            IEnumerable<ICilLabel> target => $"({string.Join(", ", target.Select(FormatBranchTarget))})",
-            IEnumerable<int> offsets => $"({string.Join(", ", offsets.Select(x => FormatBranchTarget(x)))})",
+            IEnumerable<ICilLabel> target => $"({BackCompatUtils.JoinString(", ", target.Select(FormatBranchTarget))})",
+            IEnumerable<int> offsets => $"({BackCompatUtils.JoinString(", ", offsets.Select(x => FormatBranchTarget(x)))})",
             null => InvalidOperandString,
             _ => operand.ToString() ?? string.Empty
         };

@@ -1,5 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
+using AsmResolver.PE.BackCompat;
+
+#if NET35
+using IReadOnlyListColumnLayout = System.Collections.Generic.IList<AsmResolver.PE.DotNet.Metadata.Tables.ColumnLayout>;
+#else
+using IReadOnlyListColumnLayout = System.Collections.Generic.IReadOnlyList<AsmResolver.PE.DotNet.Metadata.Tables.ColumnLayout>;
+#endif
+
 
 namespace AsmResolver.PE.DotNet.Metadata.Tables
 {
@@ -22,7 +30,7 @@ namespace AsmResolver.PE.DotNet.Metadata.Tables
         /// <summary>
         /// Gets a collection of columns that this table defines.
         /// </summary>
-        public IReadOnlyList<ColumnLayout> Columns
+        public IReadOnlyListColumnLayout Columns
         {
             get;
         }
@@ -38,7 +46,7 @@ namespace AsmResolver.PE.DotNet.Metadata.Tables
         /// <inheritdoc />
         public override string ToString()
         {
-            return $"({string.Join(", ", Columns.Select(c => c.Name))})";
+            return $"({BackCompatUtils.JoinString(", ", Columns.Select(c => c.Name))})";
         }
 
     }

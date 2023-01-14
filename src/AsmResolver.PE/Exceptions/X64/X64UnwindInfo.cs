@@ -1,5 +1,6 @@
 using System;
 using AsmResolver.IO;
+using AsmResolver.PE.BackCompat;
 using AsmResolver.PE.File.Headers;
 
 namespace AsmResolver.PE.Exceptions.X64
@@ -19,7 +20,7 @@ namespace AsmResolver.PE.Exceptions.X64
         public X64UnwindInfo()
         {
             Version = 1;
-            UnwindCodes = Array.Empty<ushort>();
+            UnwindCodes = BackCompatUtils.EmptyArray<ushort>();
             ExceptionHandler = SegmentReference.Null;
             ExceptionHandlerData = SegmentReference.Null;
         }

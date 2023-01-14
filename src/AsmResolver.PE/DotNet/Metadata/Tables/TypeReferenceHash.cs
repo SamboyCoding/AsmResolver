@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Security.Cryptography;
+using AsmResolver.PE.BackCompat;
 using AsmResolver.PE.DotNet.Metadata.Strings;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
 
@@ -52,7 +53,7 @@ namespace AsmResolver.PE.DotNet.Metadata.Tables
                 .Select(row =>
                     $"{stringsStream.GetStringByIndex(row.Namespace)}-{stringsStream.GetStringByIndex(row.Name)}");
 
-            string fullString = string.Join(",", elements);
+            string fullString = BackCompatUtils.JoinString(",", elements);
 
             using var sha256 = SHA256.Create();
             return sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(fullString));

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
+using AsmResolver.PE.BackCompat;
 using AsmResolver.PE.DotNet.Metadata.Tables.Rows;
 
 namespace AsmResolver.PE.DotNet.StrongName
@@ -84,7 +85,7 @@ namespace AsmResolver.PE.DotNet.StrongName
                 }
             }
 
-            algorithm.TransformFinalBlock(Array.Empty<byte>(), 0, 0);
+            algorithm.TransformFinalBlock(BackCompatUtils.EmptyArray<byte>(), 0, 0);
             return algorithm.Hash!;
         }
 
