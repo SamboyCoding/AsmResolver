@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
 using AsmResolver.Collections;
+using AsmResolver.DotNet.BackCompat;
 using AsmResolver.DotNet.Builder;
 using AsmResolver.DotNet.Serialized;
 using AsmResolver.DotNet.Signatures.Types;

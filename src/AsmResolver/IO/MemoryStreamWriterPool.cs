@@ -1,7 +1,12 @@
-#if !NET35
 using System;
-using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.IO;
+
+#if NET35
+using AsmResolver.BackCompat;
+#else
+using System.Collections.Concurrent;
+#endif
 
 namespace AsmResolver.IO
 {
@@ -14,7 +19,12 @@ namespace AsmResolver.IO
     /// </remarks>
     public class MemoryStreamWriterPool
     {
+#if NET35
+        //TODO Implement Locks for this.
+        private readonly Queue<BinaryStreamWriter> _writers = new();
+#else
         private readonly ConcurrentQueue<BinaryStreamWriter> _writers = new();
+#endif
 
         /// <summary>
         /// Rents a single binary stream writer.
@@ -86,4 +96,3 @@ namespace AsmResolver.IO
         }
     }
 }
-#endif

@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.IO.Compression;
 using AsmResolver.Collections;
+using AsmResolver.DotNet.BackCompat;
 using AsmResolver.IO;
 
 namespace AsmResolver.DotNet.Bundles

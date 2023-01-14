@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using AsmResolver.DotNet.BackCompat;
 using AsmResolver.PE.DotNet.Cil;
 
 namespace AsmResolver.DotNet.Code.Cil
@@ -197,14 +198,14 @@ namespace AsmResolver.DotNet.Code.Cil
             }
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         private void ScheduleLabel(int currentIndex, ICilLabel label, int nextStackSize)
         {
             int nextIndex = _body.Instructions.GetIndexByOffset(label.Offset);
             ScheduleIndex(currentIndex, nextIndex, label.Offset, nextStackSize);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         private void ScheduleDelta(int currentIndex, int offsetDelta, int nextStackSize)
         {
             int nextOffset = _body.Instructions[currentIndex].Offset + offsetDelta;
@@ -212,7 +213,7 @@ namespace AsmResolver.DotNet.Code.Cil
             ScheduleIndex(currentIndex, nextIndex, nextOffset, nextStackSize);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         private void ScheduleNext(int currentIndex, int nextStackSize)
         {
             var instruction = _body.Instructions[currentIndex];

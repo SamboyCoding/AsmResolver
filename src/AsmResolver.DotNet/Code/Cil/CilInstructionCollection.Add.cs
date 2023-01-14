@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using AsmResolver.DotNet.BackCompat;
 using AsmResolver.DotNet.Collections;
 using AsmResolver.PE.DotNet.Cil;
 using AsmResolver.PE.DotNet.Metadata.Tables;
@@ -15,7 +16,7 @@ namespace AsmResolver.DotNet.Code.Cil
         /// <param name="code">The code.</param>
         /// <returns>The created instruction.</returns>
         /// <exception cref="InvalidCilInstructionException">Occurs when the provided operation requires an operand.</exception>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         public CilInstruction Add(CilOpCode code) => Insert(Count, code);
 
         /// <summary>
@@ -30,7 +31,7 @@ namespace AsmResolver.DotNet.Code.Cil
         /// <exception cref="ArgumentNullException">
         /// Occurs when <paramref name="label"/> is null.
         /// </exception>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         public CilInstruction Add(CilOpCode code, ICilLabel label) => Insert(Count, code, label);
 
         /// <summary>
@@ -45,7 +46,7 @@ namespace AsmResolver.DotNet.Code.Cil
         /// <exception cref="ArgumentNullException">
         /// Occurs when <paramref name="labels"/> is null.
         /// </exception>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         public CilInstruction Add(CilOpCode code, params ICilLabel[] labels) =>
             Insert(Count, code, (IEnumerable<ICilLabel>) labels);
 
@@ -61,7 +62,7 @@ namespace AsmResolver.DotNet.Code.Cil
         /// <exception cref="ArgumentNullException">
         /// Occurs when <paramref name="labels"/> is null.
         /// </exception>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         public CilInstruction Add(CilOpCode code, IEnumerable<ICilLabel> labels) => Insert(Count, code, labels);
 
         /// <summary>
@@ -73,7 +74,7 @@ namespace AsmResolver.DotNet.Code.Cil
         /// <exception cref="InvalidCilInstructionException">
         /// Occurs when the provided operation is not an opcode referencing an integer constant.
         /// </exception>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         public CilInstruction Add(CilOpCode code, int constant) => Insert(Count, code, constant);
 
         /// <summary>
@@ -85,7 +86,7 @@ namespace AsmResolver.DotNet.Code.Cil
         /// <exception cref="InvalidCilInstructionException">
         /// Occurs when the provided operation is not an opcode referencing a 64-bit integer constant.
         /// </exception>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         public CilInstruction Add(CilOpCode code, long constant) => Insert(Count, code, constant);
 
         /// <summary>
@@ -97,9 +98,9 @@ namespace AsmResolver.DotNet.Code.Cil
         /// <exception cref="InvalidCilInstructionException">
         /// Occurs when the provided operation is not an opcode referencing a float32 constant.
         /// </exception>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         public CilInstruction Add(CilOpCode code, float constant) => Insert(Count, code, constant);
-        
+
         /// <summary>
         /// Verifies and adds a instruction to the end of the collection that references a float64 constant.
         /// </summary>
@@ -109,7 +110,7 @@ namespace AsmResolver.DotNet.Code.Cil
         /// <exception cref="InvalidCilInstructionException">
         /// Occurs when the provided operation is not an opcode referencing a float64 constant.
         /// </exception>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         public CilInstruction Add(CilOpCode code, double constant) => Insert(Count, code, constant);
 
         /// <summary>
@@ -124,7 +125,7 @@ namespace AsmResolver.DotNet.Code.Cil
         /// <exception cref="ArgumentNullException">
         /// Occurs when <paramref name="constant"/> is null.
         /// </exception>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         public CilInstruction Add(CilOpCode code, string constant) => Insert(Count, code, constant);
 
         /// <summary>
@@ -139,7 +140,7 @@ namespace AsmResolver.DotNet.Code.Cil
         /// <exception cref="ArgumentNullException">
         /// Occurs when <paramref name="variable"/> is null.
         /// </exception>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         public CilInstruction Add(CilOpCode code, CilLocalVariable variable) => Insert(Count, code, variable);
 
         /// <summary>
@@ -154,7 +155,7 @@ namespace AsmResolver.DotNet.Code.Cil
         /// <exception cref="ArgumentNullException">
         /// Occurs when <paramref name="parameter"/> is null.
         /// </exception>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         public CilInstruction Add(CilOpCode code, Parameter parameter) => Insert(Count, code, parameter);
 
         /// <summary>
@@ -169,7 +170,7 @@ namespace AsmResolver.DotNet.Code.Cil
         /// <exception cref="ArgumentNullException">
         /// Occurs when <paramref name="field"/> is null.
         /// </exception>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         public CilInstruction Add(CilOpCode code, IFieldDescriptor field) => Insert(Count, code, field);
 
         /// <summary>
@@ -184,7 +185,7 @@ namespace AsmResolver.DotNet.Code.Cil
         /// <exception cref="ArgumentNullException">
         /// Occurs when <paramref name="method"/> is null.
         /// </exception>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         public CilInstruction Add(CilOpCode code, IMethodDescriptor method) => Insert(Count, code, method);
 
         /// <summary>
@@ -199,7 +200,7 @@ namespace AsmResolver.DotNet.Code.Cil
         /// <exception cref="ArgumentNullException">
         /// Occurs when <paramref name="member"/> is null.
         /// </exception>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         public CilInstruction Add(CilOpCode code, MemberReference member) => Insert(Count, code, member);
 
         /// <summary>
@@ -214,7 +215,7 @@ namespace AsmResolver.DotNet.Code.Cil
         /// <exception cref="ArgumentNullException">
         /// Occurs when <paramref name="type"/> is null.
         /// </exception>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         public CilInstruction Add(CilOpCode code, ITypeDefOrRef type) => Insert(Count, code, type);
 
         /// <summary>
@@ -229,9 +230,9 @@ namespace AsmResolver.DotNet.Code.Cil
         /// <exception cref="ArgumentNullException">
         /// Occurs when <paramref name="member"/> is null.
         /// </exception>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         public CilInstruction Add(CilOpCode code, IMetadataMember member) => Insert(Count, code, member);
-        
+
         /// <summary>
         /// Verifies and adds a instruction to the end of the collection that references a standalone signature.
         /// </summary>
@@ -241,9 +242,9 @@ namespace AsmResolver.DotNet.Code.Cil
         /// <exception cref="InvalidCilInstructionException">
         /// Occurs when the provided operation is not an opcode referencing a standalone signature.
         /// </exception>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         public CilInstruction Add(CilOpCode code, StandAloneSignature signature) => Insert(Count, code, signature);
-        
+
         /// <summary>
         /// Verifies and adds a instruction to the end of the collection that references a metadata member by its token.
         /// </summary>
@@ -256,7 +257,7 @@ namespace AsmResolver.DotNet.Code.Cil
         /// <exception cref="ArgumentOutOfRangeException">
         /// Occurs when the provided token is not valid in a CIL stream.
         /// </exception>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         public CilInstruction Add(CilOpCode code, MetadataToken token) => Insert(Count, code, token);
     }
 }

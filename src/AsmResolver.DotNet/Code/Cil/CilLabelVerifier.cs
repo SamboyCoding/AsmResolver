@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using AsmResolver.DotNet.BackCompat;
 using AsmResolver.PE.DotNet.Cil;
 
 namespace AsmResolver.DotNet.Code.Cil
@@ -118,11 +119,11 @@ namespace AsmResolver.DotNet.Code.Cil
             }
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         private bool IsPresentInBody(CilInstruction instruction) =>
             ReferenceEquals(_body.Instructions.GetByOffset(instruction.Offset), instruction);
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         private bool IsPresentInBody(int offset) =>
             _body.Instructions.GetIndexByOffset(offset) >= 0 || _body.Instructions.EndLabel.Offset == offset;
 

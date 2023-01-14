@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using AsmResolver.DotNet.BackCompat;
 
 namespace AsmResolver.DotNet.Signatures.Types.Parsing
 {
     internal struct TypeNameLexer
     {
-        internal static readonly ISet<char> ReservedChars = new HashSet<char>("*+.,&[]…");
+        internal static readonly HashSet<char> ReservedChars = new HashSet<char>("*+.,&[]…");
         private static readonly char[] TrimCharacters = " ".ToCharArray();
 
         private readonly TextReader _reader;

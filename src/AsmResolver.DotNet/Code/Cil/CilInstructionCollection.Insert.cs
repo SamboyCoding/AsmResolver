@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using AsmResolver.DotNet.BackCompat;
 using AsmResolver.DotNet.Collections;
 using AsmResolver.PE.DotNet.Cil;
 using AsmResolver.PE.DotNet.Metadata.Tables;
@@ -10,7 +11,7 @@ namespace AsmResolver.DotNet.Code.Cil
 {
     public partial class CilInstructionCollection
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         private CilInstruction InsertAndReturn(int index, CilOpCode code, object? operand = null)
         {
             var instruction = new CilInstruction(code, operand);
