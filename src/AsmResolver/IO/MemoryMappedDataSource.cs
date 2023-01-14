@@ -1,3 +1,4 @@
+#if !NET35
 using System;
 using System.IO.MemoryMappedFiles;
 
@@ -44,3 +45,4 @@ namespace AsmResolver.IO
         public void Dispose() => _accessor?.Dispose();
     }
 }
+#endif

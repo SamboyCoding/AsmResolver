@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using AsmResolver.BackCompat;
 
 namespace AsmResolver.Collections
 {
@@ -63,7 +64,7 @@ namespace AsmResolver.Collections
             }
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         private static (int wordIndex, int bitIndex) SplitWordBitIndex(int index)
         {
             int wordIndex = Math.DivRem(index, WordSize, out int offset);

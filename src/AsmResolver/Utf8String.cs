@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
+using AsmResolver.BackCompat;
 
 namespace AsmResolver
 {
@@ -21,7 +22,7 @@ namespace AsmResolver
         /// <summary>
         /// Represents the empty UTF-8 string.
         /// </summary>
-        public static readonly Utf8String Empty = new(Array.Empty<byte>());
+        public static readonly Utf8String Empty = new(BackCompatUtils.EmptyArray<byte>());
 
         private readonly byte[] _data;
         private string? _cachedString;

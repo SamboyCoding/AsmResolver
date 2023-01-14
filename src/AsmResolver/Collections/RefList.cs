@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using AsmResolver.BackCompat;
 
 namespace AsmResolver.Collections
 {
@@ -13,7 +14,10 @@ namespace AsmResolver.Collections
     /// <remarks>
     /// This list should be regarded as a mutable array that is not thread-safe.
     /// </remarks>
-    public class RefList<T> : ICollection, IList<T>, IReadOnlyList<T>
+    public class RefList<T> : ICollection, IList<T>
+#if !NET35
+        , IReadOnlyList<T>
+#endif
         where T : struct
     {
         /// <summary>
@@ -272,7 +276,7 @@ namespace AsmResolver.Collections
             Array.Resize(ref _items, newCapacity);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(BackCompatUtils.AggressiveInlining)]
         private void IncrementVersion()
         {
             unchecked

@@ -1,3 +1,4 @@
+#if !NET35
 using System.Collections.Generic;
 
 namespace AsmResolver.IO
@@ -44,3 +45,4 @@ namespace AsmResolver.IO
         }
     }
 }
+#endif

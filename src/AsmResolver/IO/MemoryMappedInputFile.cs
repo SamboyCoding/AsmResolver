@@ -1,3 +1,4 @@
+#if !NET35
 using System;
 using System.IO;
 using System.IO.MemoryMappedFiles;
@@ -45,3 +46,4 @@ namespace AsmResolver.IO
         }
     }
 }
+#endif
